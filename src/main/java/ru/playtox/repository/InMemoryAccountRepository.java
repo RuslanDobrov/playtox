@@ -1,30 +1,40 @@
 package ru.playtox.repository;
 
+import lombok.AllArgsConstructor;
+import ru.playtox.exception.NotFoundException;
 import ru.playtox.model.Account;
+import java.math.BigDecimal;
+import java.util.Map;
+import java.util.UUID;
 
+@AllArgsConstructor
 public class InMemoryAccountRepository implements AccountRepository {
-    private Account[] accounts;
 
-    public InMemoryAccountRepository(Account[] accounts) {
-        this.accounts = accounts;
-    }
+    private Map<UUID, Account> accounts;
 
     @Override
-    public Account findAccountById(int id) {
-        for (Account account : accounts) {
-            if (account.getId() == id) {
-                return account;
-            }
+    public Account findAccountById(UUID id) throws NotFoundException {
+        if (accounts.containsKey(id)) {
+            return accounts.get(id);
+        } else {
+            throw new NotFoundException(id);
         }
-        return null;
     }
+
     @Override
     public void saveAccount(Account account) {
-        for (int i = 0; i < accounts.length; i++) {
-            if (accounts[i].getId() == account.getId()) {
-                accounts[i] = account;
-                break;
-            }
-        }
+        accounts.put(account.getId(), account);
+//        сheckAccountBalances();
     }
+
+//    private void сheckAccountBalances() {
+//        BigDecimal totalBalance = BigDecimal.ZERO;
+//        for (Account account : accounts.values()) {
+//            System.out.println("Account: " + account.getId() + " has balance: " + account.getMoney());
+//            totalBalance = totalBalance.add(account.getMoney());
+//        }
+//
+//        System.out.println("Total balance on all accounts: " + totalBalance);
+//        System.out.println("Expected balance: 40000");
+//    }
 }

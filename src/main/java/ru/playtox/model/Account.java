@@ -1,23 +1,16 @@
 package ru.playtox.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.math.BigDecimal;
+import java.util.UUID;
+
+@AllArgsConstructor
+@Getter
+@Setter
 public class Account {
-    private int id;
-    private int money;
-
-    public Account(int id, int money) {
-        this.id = id;
-        this.money = money;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public int getMoney() {
-        return money;
-    }
-
-    public void setMoney(int money) {
-        this.money = money;
-    }
+    private UUID id;
+    private BigDecimal money;
 }
