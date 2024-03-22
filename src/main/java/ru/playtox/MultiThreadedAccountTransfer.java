@@ -15,7 +15,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-
 public class MultiThreadedAccountTransfer {
     private static final Logger logger = Logger.getLogger(MultiThreadedAccountTransfer.class);
     public static void main(String[] args) {
