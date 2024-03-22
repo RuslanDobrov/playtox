@@ -3,7 +3,6 @@ package ru.playtox.repository;
 import lombok.AllArgsConstructor;
 import ru.playtox.exception.NotFoundException;
 import ru.playtox.model.Account;
-import java.math.BigDecimal;
 import java.util.Map;
 import java.util.UUID;
 
@@ -24,17 +23,5 @@ public class InMemoryAccountRepository implements AccountRepository {
     @Override
     public void saveAccount(Account account) {
         accounts.put(account.getId(), account);
-//        сheckAccountBalances();
     }
-
-//    private void сheckAccountBalances() {
-//        BigDecimal totalBalance = BigDecimal.ZERO;
-//        for (Account account : accounts.values()) {
-//            System.out.println("Account: " + account.getId() + " has balance: " + account.getMoney());
-//            totalBalance = totalBalance.add(account.getMoney());
-//        }
-//
-//        System.out.println("Total balance on all accounts: " + totalBalance);
-//        System.out.println("Expected balance: 40000");
-//    }
 }
