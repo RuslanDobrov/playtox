@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 @Getter
 public class AppConfig {
     private static AppConfig instance = null;
-
     private int numberOfThreads;
     private int numberOfTransactions;
     private int numberOfAccounts;

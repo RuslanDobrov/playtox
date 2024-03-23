@@ -1,7 +1,6 @@
 package ru.playtox.config;
 
 import org.apache.log4j.Logger;
-import ru.playtox.MultiThreadedAccountTransfer;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -9,7 +8,7 @@ import java.util.Properties;
 public class ConfigReader {
 
     private Properties properties = new Properties();
-    private static final Logger logger = Logger.getLogger(MultiThreadedAccountTransfer.class);
+    private static final Logger logger = Logger.getLogger(ConfigReader.class);
 
     public ConfigReader() {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("application.properties")) {

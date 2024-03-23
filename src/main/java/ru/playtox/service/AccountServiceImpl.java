@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AccountServiceImpl implements AccountService {
     private AccountRepository accountRepository;
-    private static final Logger logger = Logger.getLogger(MultiThreadedAccountTransfer.class);
+    private static final Logger logger = Logger.getLogger(AccountServiceImpl.class);
 
     @Locked
     @Override
