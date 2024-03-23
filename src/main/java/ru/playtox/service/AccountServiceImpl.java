@@ -2,6 +2,8 @@ package ru.playtox.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Locked;
+import org.apache.log4j.Logger;
+import ru.playtox.MultiThreadedAccountTransfer;
 import ru.playtox.exception.InsufficientFundsException;
 import ru.playtox.exception.NotFoundException;
 import ru.playtox.model.Account;
@@ -12,6 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AccountServiceImpl implements AccountService {
     private AccountRepository accountRepository;
+    private static final Logger logger = Logger.getLogger(MultiThreadedAccountTransfer.class);
 
     @Locked
     @Override
@@ -21,7 +24,9 @@ public class AccountServiceImpl implements AccountService {
         if (fromAccount.getMoney().compareTo(amount) >= 0) {
             fromAccount.setMoney(fromAccount.getMoney().subtract(amount));
             toAccount.setMoney(toAccount.getMoney().add(amount));
+            logger.info("Transfer " + fromAccountId + " -> " + toAccountId + ": " + amount);
         } else {
+            logger.error("Insufficient funds in account " + fromAccountId);
             throw new InsufficientFundsException(fromAccountId);
         }
         accountRepository.saveAccount(fromAccount);
